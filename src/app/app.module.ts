@@ -13,16 +13,21 @@ import {
   EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
-  SessionListComponent
+  SessionListComponent,
+  UpvoteComponent,
+  VoterService
+
+  
 } from './events-list/index'
 
+import { LocationValidator} from '../app/events-list/shared/location-validator.directive'
+import {DurationPipe} from  '../app/events-list/shared/duration.pipe'
 import { AppComponent } from './app.component';
-
+import { CollapsibleWellComponent } from './common/collapsable-well.component';
 import { NavComponent } from '../app/nav/nav.component';
 import { appRoutes } from './nav/routes';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
-
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { AuthService } from './user/auth.service';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent,
+    UpvoteComponent,
+    DurationPipe,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
@@ -46,6 +55,7 @@ import { AuthService } from './user/auth.service';
   providers: [EventService,EventRouteActivator,
     EventListResolver, 
     AuthService,
+    VoterService,
   {provide:'canDeactivateCreateEvent', 
   useValue: checkDirtyState}
   ],
